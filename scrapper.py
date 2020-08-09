@@ -1,12 +1,18 @@
 #%%
 import bs4 as bs
 import urllib.request
-# %%
+import ssl
 
-source = urllib.request.urlopen('http://quotes.toscrape.com/').read()
+# %%
+ssl_context = ssl.SSLContext()
+url = 'https://devpost.com/lnogueir'
+source = urllib.request.urlopen(url, context=ssl_context).read()
 
 soup = bs.BeautifulSoup(source, 'lxml')
 
-soup.find_all(class_='quote')
+portifolio_tags = soup.find(class_='portfolio-tags')
+tech_tags = portifolio_tags.find_all('li')
 
 
+
+# %%
