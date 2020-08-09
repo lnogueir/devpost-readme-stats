@@ -16,3 +16,8 @@ tech_tags = portifolio_tags.find_all('li')
 
 
 # %%
+f = open('templates/default.svg', 'r')
+template = f.read()
+
+
+# %%
