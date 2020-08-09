@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SVG Test</title>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
+  width="375px" height="200px" viewBox="0 0 375 200" zoomAndPan="disable"
+  version="1.1">
+  <defs>
+    <linearGradient id="container-gradient" x1="0%" y1="0%" x2="100%" y2="0%">  
+      <stop offset="0%" style="stop-color:#485461;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#28313b;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <style>
+    .wrap{
+      font-family: 'Courier New', Courier;      
+      font-weight: 500;
+      fill: lightgray;
+    }
+    .container{
+      width: 375px;
+      height: 200px; 
+      rx: 5; 
+      fill: url(#container-gradient);
+    }
+  </style>
+
+  <g class="wrap">
+    <rect class="container"/>
+    <text font-size="1.2rem" x="10" y="30">👨‍💻 Hacker Stats 👨‍💻</text>
+    <text x="215" y="185" font-family="Helvetica" font-size=".75rem">Powered By Devpost</text>
+    <image x="330" y="165" href="https://seeklogo.com/images/D/devpost-logo-95FF685C5D-seeklogo.com.png" height="30" width="40"/>
+  </g>
+</svg>
+</body>
+</html>
