@@ -10,14 +10,28 @@
 
   <g font-weight="500" fill="lightgray" font-family="'Courier New', Courier" class="wrap">
     <rect class="container" width="375" height="200" rx="5" fill="url(#container-gradient)"/>
-    <foreignObject x="12" width="375" height="200">
-      <div xmlns="http://www.w3.org/1999/xhtml" style="position: relative;">
-        <h1 style="font-size: 1.2rem; color: lightgray; font-weight: 300">👨‍💻 Hacker Stats 👨‍💻</h1>
-        {name} ipsum dolor sit amet, consectetur adipiscing elit.
-        erat volutpat.
+    <foreignObject x="5" width="375" height="200">
+      <div xmlns="http://www.w3.org/1999/xhtml" style="height:100%; position: relative;color: lightgray;">
+        <h1 style="text-align: center;margin: 5px 0; font-size: 1.2rem; font-weight: 300">
+          // Hacker Stats
+        </h1>
+        <div style="padding: 5px;">
+          <div style="margin: 2px 0;">
+             👨‍💻 HackerId: {{hacker_id}}
+          </div>
+          <div style="margin: 2px 0;">
+             👾 Hackathons: {{hackathon_count}}
+          </div>
+        </div>
+        <a style="color: inherit; text-decoration: none;" href="https://devpost.com/"> 
+          <div style="position:absolute; bottom: 9px; right: 9px;display:flex;">
+            <span style="position: relative; top: 4px; right:4px; font-family: Helvetica; font-size: .7rem">Powered By Devpost</span>
+            <img src="https://seeklogo.com/images/D/devpost-logo-95FF685C5D-seeklogo.com.png" height="21" width="26"/>
+          </div>
+        </a>
       </div>
     </foreignObject>
-    <text x="215" y="185" font-family="Helvetica" font-size=".8rem">Powered By Devpost</text>
-    <image x="330" y="165" href="https://seeklogo.com/images/D/devpost-logo-95FF685C5D-seeklogo.com.png" height="30" width="40"/>
+    <!-- <text x="215" y="185" font-family="Helvetica" font-size=".8rem">Powered By Devpost</text>
+    <image x="330" y="165" href="https://seeklogo.com/images/D/devpost-logo-95FF685C5D-seeklogo.com.png" height="30" width="40"/> -->
   </g>
 </svg>
