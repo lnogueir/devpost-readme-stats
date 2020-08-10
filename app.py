@@ -11,9 +11,13 @@ themes = {os.path.splitext(theme)[0]: get_raw_svg(f'{themes_path}/{theme}') for 
 
 @app.route('/api')
 def api():
-    results_to_render = fetch_hacker_stats(request.args)
+    try:
+        results_to_render = fetch_hacker_stats(request.args)
+    except:
+        results_to_render = {}
+    # https://jinja.palletsprojects.com/en/2.11.x/
     return Response(
-        render_svg(themes['default'], {'hacker_id': 'lnogueir', 'hackathon_count': '10'}), 
+        render_svg(get_raw_svg('templates/default.svg'), results_to_render), 
         mimetype='image/svg+xml'
     )
 

@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import urllib.request
+import random
 import ssl
 
 class HackerFetcher:
@@ -11,7 +12,7 @@ class HackerFetcher:
     self.soup = BeautifulSoup(source, 'lxml')
   
   def get_hackathon_count(self):
-    self.soup.find(href=f'/{self.hacker_id}/challenges').find(class_='totals').text
+    return self.soup.find(href=f'/{self.hacker_id}/challenges').find(class_='totals').text
   
   def get_skills(self):
     portifolio_tags = self.soup.find(class_='portfolio-tags')
@@ -49,11 +50,15 @@ def fetch_hacker_stats(hacker_request):
     hacker_id = hacker_request.get('id')
     # TODO: raise ValueError in case hacker_id is not found
     fetcher = HackerFetcher(hacker_id)
+    projects = fetcher.get_projects()
+    skills = fetcher.get_skills()
+    random.shuffle(projects)
+    random.shuffle(skills)
     return {
       'hacker_id': hacker_id,
       'hacker_url': fetcher.url,
       'hackathon_count': fetcher.get_hackathon_count(),
-      'projects': fetcher.get_projects(),
-      'skills': fetcher.get_skills()
+      'projects': projects,
+      'skills': skills
     }
   raise KeyError('id must be present in request')

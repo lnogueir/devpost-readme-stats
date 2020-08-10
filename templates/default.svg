@@ -1,37 +1,171 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
-  width="375px" height="200px" viewBox="0 0 375 200" zoomAndPan="disable"
-  version="1.1">
-  <defs>
-    <linearGradient id="container-gradient" x1="0%" y1="0%" x2="100%" y2="0%">  
-      <stop offset="0%" style="stop-color:#485461;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#28313b;stop-opacity:1" />
-    </linearGradient>
-  </defs>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+  <a href="{{ hacker_url }}">
+    <foreignObject width="380" height="500">
+      <style>
+        *{
+          font-family:'Courier New', Courier;
+          color: lightgray;
+          font-weight: 300;
+          /* font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"; */
+        }
 
-  <g font-weight="500" fill="lightgray" font-family="'Courier New', Courier" class="wrap">
-    <rect class="container" width="375" height="200" rx="5" fill="url(#container-gradient)"/>
-    <foreignObject x="5" width="375" height="200">
-      <div xmlns="http://www.w3.org/1999/xhtml" style="height:100%; position: relative;color: lightgray;">
-        <h1 style="text-align: center;margin: 5px 0; font-size: 1.2rem; font-weight: 300">
-          // Hacker Stats
+        a{
+          text-decoration: none;
+        }
+
+        .main-container{
+          background: linear-gradient(315deg, #485461 0%, #3b4655 74%);
+          font-size:.9rem; 
+          height:auto; 
+          position: relative;
+          color: lightgray;
+          border-radius: .25rem;
+          padding: 7.5px;
+        }
+
+        .main-title{
+          text-align: center;
+          margin:8px 0 4px 0; 
+          font-size: 1.1rem; 
+        }
+
+        .hacker-intro-row{
+          padding: 5px; 
+          display: flex; 
+          justify-content: space-between;
+          word-spacing: -7.5px;
+        }
+
+        .projects-container{
+          text-align: center; 
+          margin: 4px;
+        }
+
+        .projects-title{
+          margin: 8px 3px 3px 3px;
+        }
+
+        .projects{
+          display: flex; 
+          justify-content: center;
+          flex-wrap: wrap;
+          margin: 7.5px 0;
+        }
+
+        .project {
+          margin: 3px 6px; 
+          box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+          transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+          border-radius: .25rem;
+          background-color: #333;
+        }
+
+        .project:hover{
+          box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        }
+
+        .project-thumbnail{
+          border-radius: .25rem .25rem 0 0;
+          width: 77.25px;
+          background: #ffffff;
+        }
+        
+        .project-title{
+          padding:2px;
+          position: relative;
+          font-size: .85rem;
+          top: -1.2px;
+          border-radius: 0 0 .25rem .25rem;
+        }
+
+        .skills{
+          margin-top: 12.5px;
+          margin-bottom:25px;
+          display: flex; 
+          justify-content: center;;
+          flex-wrap: wrap;
+        }
+
+        .skill{
+          padding-top: 0.1em;
+          padding-bottom: 0.1rem;
+          padding-left: .7rem;
+          padding-right: .7rem;
+          border-radius: 9999px;
+          background: #ffffff;
+          opacity: .8;
+          margin: 2px;
+        }
+
+        .skill:hover{
+          opacity: 1;
+          padding-left: 1.1rem;
+          padding-right: 1.1rem;
+        }
+
+        .skills a{
+          color: #485461;
+        }
+
+        .devpost-wrap{
+          position:absolute; 
+          bottom: 5px; 
+          right: 7px;
+          display:flex;
+          opacity: .8;
+        }
+
+        .devpost-wrap:hover{
+          opacity:1;
+        }
+
+        .devpost-text{
+          position: relative; top: 4px; right:4px; font-family: Helvetica; font-size: .7rem;
+        }
+      </style>
+      <div xmlns="http://www.w3.org/1999/xhtml" class="main-container">
+        <h1 class="main-title">
+          // Hacker Profile
         </h1>
-        <div style="padding: 5px;">
-          <div style="margin: 2px 0;">
-             👨‍💻 HackerId: {{hacker_id}}
+        <div class="hacker-intro-row">
+          <div style="margin-left: 10px;">
+            👨‍💻HackerId: {{hacker_id}}
           </div>
-          <div style="margin: 2px 0;">
-             👾 Hackathons: {{hackathon_count}}
+          <div style="margin-right: 10px">
+            👾Hackathons: {{hackathon_count}}
           </div>
         </div>
-        <a style="color: inherit; text-decoration: none;" href="https://devpost.com/"> 
-          <div style="position:absolute; bottom: 9px; right: 9px;display:flex;">
-            <span style="position: relative; top: 4px; right:4px; font-family: Helvetica; font-size: .7rem">Powered By Devpost</span>
+        <div class="projects-container">
+          <div class="projects-title">
+            🚀 Some of my Hacks 💻
+          </div>
+          <div class="projects">
+            {% for project in projects[:4] %}
+              <div class="project">
+                <a href="{{ project.href }}">
+                  <img class="project-thumbnail" src="{{ project.thumbnail }}"/>
+                  <div class="project-title">
+                    {{ project.title }}
+                  </div>
+                </a>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="skills">
+          {% for skill in skills %}
+            <div class="skill">
+              <a href="{{ skill.href }}">{{ skill.title }}</a>
+            </div>
+          {% endfor %}
+        </div>
+        <a href="https://devpost.com/"> 
+          <div class="devpost-wrap">
+            <span class="devpost-text">Powered By Devpost</span>
             <img src="https://seeklogo.com/images/D/devpost-logo-95FF685C5D-seeklogo.com.png" height="21" width="26"/>
           </div>
         </a>
       </div>
     </foreignObject>
-    <!-- <text x="215" y="185" font-family="Helvetica" font-size=".8rem">Powered By Devpost</text>
-    <image x="330" y="165" href="https://seeklogo.com/images/D/devpost-logo-95FF685C5D-seeklogo.com.png" height="30" width="40"/> -->
-  </g>
+  </a>
 </svg>
