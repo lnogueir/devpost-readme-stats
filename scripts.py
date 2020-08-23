@@ -5,6 +5,7 @@ import ssl
 
 # %%
 ssl_context = ssl.SSLContext()
+# url = 'https://devpost.com/Szugalew'
 url = 'https://devpost.com/lnogueir'
 source = urllib.request.urlopen(url, context=ssl_context).read()
 
@@ -23,6 +24,10 @@ skills = [
   for tag in tech_tags
 ]
 
+#%%
+project_tags = soup.find(id='software-entries').find_all(class_='gallery-item')
+
+
 
 # %%
 f = open('templates/default.svg', 'r')
@@ -36,4 +41,9 @@ random.shuffle(a)
 
 
 
+# %%
+test = [{'is_winner': True}, {'is_winner': False},
+        {'is_winner': True}, {'is_winner': False}]
+
+test.sort(key=lambda x: not(x['is_winner']))
 # %%

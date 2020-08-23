@@ -13,6 +13,11 @@ class HackerFetcher:
   
   def get_hackathon_count(self):
     return self.soup.find(href=f'/{self.hacker_id}/challenges').find(class_='totals').text
+
+  def get_hacker_name(self):
+    portfolio_tag = self.soup.find(id='portfolio-user-name')
+    portfolio_tag.find('small').extract()
+    return portfolio_tag.text.strip()
   
   def get_skills(self):
     portifolio_tags = self.soup.find(class_='portfolio-tags')
@@ -20,7 +25,7 @@ class HackerFetcher:
     return [
       {
         'title': tag.text, 
-        'href': (atag := tag.find('a')) and atag['href']
+        'href': atag['href'] if (atag := tag.find('a')) else '#'
       } 
       for tag in skills_tags
     ]
@@ -34,6 +39,7 @@ class HackerFetcher:
         'href': (a := tag.find('a', class_='link-to-software')) and a['href'],
         'title': (title_div := tag.find('div', class_='software-entry-name')) and title_div.find('h5').text.strip(),
         'description': (description_div := tag.find('div', class_='software-entry-name')) and description_div.find('p').text.strip(),
+        'is_winner': tag.find(class_='winner') != None,
         'contributors': [
           {
             'img': (member_img_tag := member_tag.find('img')) and member_img_tag['src'], 
@@ -45,20 +51,23 @@ class HackerFetcher:
       for tag in project_tags
     ]
 
-def fetch_hacker_stats(hacker_request):
+def fetch_hacker_stats(hacker_request): 
   if 'id' in hacker_request:
     hacker_id = hacker_request.get('id')
-    # TODO: raise ValueError in case hacker_id is not found
+    # TODO: raise ValueError in case hacker_id is not found on devpost
     fetcher = HackerFetcher(hacker_id)
     projects = fetcher.get_projects()
     skills = fetcher.get_skills()
     random.shuffle(projects)
+    projects.sort(reverse=True, key=lambda p: p['is_winner'])
     random.shuffle(skills)
     return {
+      'hacker_name': fetcher.get_hacker_name(),
       'hacker_id': hacker_id,
       'hacker_url': fetcher.url,
       'hackathon_count': fetcher.get_hackathon_count(),
       'projects': projects,
+      'win_count': len(list(filter(lambda project: project['is_winner'], projects))),
       'skills': skills
     }
   raise KeyError('id must be present in request')

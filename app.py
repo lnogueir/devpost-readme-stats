@@ -15,7 +15,6 @@ def api():
         results_to_render = fetch_hacker_stats(request.args)
     except:
         results_to_render = {}
-    # https://jinja.palletsprojects.com/en/2.11.x/
     return Response(
         render_svg(get_raw_svg('templates/default.svg'), results_to_render), 
         mimetype='image/svg+xml'

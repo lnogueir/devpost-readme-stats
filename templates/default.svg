@@ -1,12 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
   <a href="{{ hacker_url }}">
-    <foreignObject width="380" height="500">
+    <foreignObject width="450" height="10000">
       <style>
         *{
-          font-family:'Courier New', Courier;
           color: lightgray;
           font-weight: 300;
-          /* font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"; */
+          font-family: Verdana, sans-serif, Helvetica, Courier;
         }
 
         a{
@@ -14,97 +13,173 @@
         }
 
         .main-container{
-          background: linear-gradient(315deg, #485461 0%, #3b4655 74%);
-          font-size:.9rem; 
-          height:auto; 
+          background: #04000E;
+          height: auto; 
           position: relative;
-          color: lightgray;
           border-radius: .25rem;
           padding: 7.5px;
         }
 
         .main-title{
           text-align: center;
+          text-shadow: #AE8EFF 1px 0 10px;
           margin:8px 0 4px 0; 
-          font-size: 1.1rem; 
+          font-size: 1.8rem;
+          line-height: 27.5px;
         }
 
-        .hacker-intro-row{
+        .main-title span{
+          font-size: 1.15rem;
+          text-shadow: none;
+        }
+
+        .hacker-intro{
+          display: flex;
+          text-align: left;
+          align-items: center;
+          margin: 5px 10px;
+          position: relative;
+        }
+
+        .hacker-intro-icon{
+          position: relative;
+          right: 7.5px;
+        }
+
+        .code-image{
+          position: absolute;
+          right: 20px;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+
+        .code-image img {
+          height: 80px;
+        }
+
+        .hacker-intro-rows{
           padding: 5px; 
-          display: flex; 
+          margin-left: 20px;
+        }
+
+        .hacker-intro-rows > div {
+          display: flex;
+          margin: 2px 0;
           justify-content: space-between;
-          word-spacing: -7.5px;
+        }
+
+        .hacker-intro-count{
+          font-size: 25px;
+          position: relative;
+          top: -1.5px;
+          left: 20px;
         }
 
         .projects-container{
-          text-align: center; 
-          margin: 4px;
+          text-align: left; 
+        }
+
+        .secondary-container{
+          margin: 4px 20px;
+        }
+
+        .secondary-title{
+          font-size: 1.25rem;
+          text-shadow: #FFA48E 1px 0 10px;
+          position: relative;
+          left: 5px;
         }
 
         .projects-title{
-          margin: 8px 3px 3px 3px;
+          margin: 10px 3px 3px 3px;
         }
 
         .projects{
-          display: flex; 
-          justify-content: center;
-          flex-wrap: wrap;
-          margin: 7.5px 0;
+          margin: 7.5px;
         }
 
         .project {
-          margin: 3px 6px; 
-          box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-          transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-          border-radius: .25rem;
-          background-color: #333;
+          display: flex;
+          border: 1px solid #FEDA7B;
+          margin-bottom: 12px;
+          opacity: 0.8;
+          position: relative;
         }
 
         .project:hover{
-          box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+          opacity: 1;
         }
 
         .project-thumbnail{
-          border-radius: .25rem .25rem 0 0;
-          width: 77.25px;
-          background: #ffffff;
+          flex: 1;
+          padding: 3px 1px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .project-thumbnail > div{
+          height: 65px;
+          width: 65px;
+          border-radius: 50%;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        }
+
+        .project-text{
+          padding: 3px 5px;
+          flex: 4;
         }
         
         .project-title{
-          padding:2px;
-          position: relative;
-          font-size: .85rem;
-          top: -1.2px;
-          border-radius: 0 0 .25rem .25rem;
+          font-size: 18px;
+          font-weight: 600;
+          display: flex;
+        }
+
+        .project-description{
+          font-size: 14px;
+          font-weight: 100;
+        }
+
+        .project-winner-badge{
+          height: 22px;
+          position: absolute;
+          right: 2px;
+          margin: 2px;
         }
 
         .skills{
-          margin-top: 12.5px;
           margin-bottom:25px;
           display: flex; 
-          justify-content: center;;
+          justify-content: space-around;
           flex-wrap: wrap;
         }
 
         .skill{
-          padding-top: 0.1em;
-          padding-bottom: 0.1rem;
+          padding-top: 0.2em;
+          padding-bottom: 0.3rem;
           padding-left: .7rem;
           padding-right: .7rem;
           border-radius: 9999px;
-          background: #ffffff;
+          display: flex;
+          justify-content: center;
+          align-items: center;
           opacity: .8;
-          margin: 2px;
+          margin: 4px 2px;
+          border: 1px solid #FEDA7B;
         }
 
         .skill:hover{
           opacity: 1;
-          padding-left: 1.1rem;
-          padding-right: 1.1rem;
+          padding-left: 1.2rem;
+          padding-right: 1.2rem;
         }
 
         .skills a{
-          color: #485461;
+          font-weight: 400;
         }
 
         .devpost-wrap{
@@ -125,44 +200,82 @@
       </style>
       <div xmlns="http://www.w3.org/1999/xhtml" class="main-container">
         <h1 class="main-title">
-          // Hacker Profile
+          Hacker Profile <br/>
+          <span>{{hacker_id}} - {{hacker_name}} </span>
         </h1>
-        <div class="hacker-intro-row">
-          <div style="margin-left: 10px;">
-            👨‍💻HackerId: {{hacker_id}}
+        <div class="hacker-intro">
+          <div class="hacker-intro-rows">
+            <div>
+              <div>
+                <img class="hacker-intro-icon" src="/static/images/hackathons_attended.svg" height="22.5" width="25" /> 
+                <span>Hackathons Attended:</span>
+              </div>
+              <span class="hacker-intro-count">{{hackathon_count}}</span>
+            </div>
+            <div>
+              <div>
+                <img class="hacker-intro-icon" style="top: 2px;" src="/static/images/projects_submitted.svg" height="22.5" width="25" />               
+                <span>Projects Submitted:</span>
+              </div>
+              <span class="hacker-intro-count">{{hackathon_count}}</span>
+            </div>
+            <div>
+              <div>
+                <img class="hacker-intro-icon" style="top: 4px;" src="/static/images/winner_projects.svg" height="22.5" width="25" /> 
+                <span>Winner Projects:</span>
+              </div>
+              <span class="hacker-intro-count">{{win_count}}</span>
+            </div>
           </div>
-          <div style="margin-right: 10px">
-            👾Hackathons: {{hackathon_count}}
+          <div class="code-image">
+            <img src="/static/images/code_icon.svg"/>
           </div>
         </div>
-        <div class="projects-container">
-          <div class="projects-title">
-            🚀 Some of my Hacks 💻
+        <div class="projects-container secondary-container">
+          <div class="projects-title secondary-title">
+            Project Highlights:
           </div>
           <div class="projects">
-            {% for project in projects[:4] %}
-              <div class="project">
-                <a href="{{ project.href }}">
-                  <img class="project-thumbnail" src="{{ project.thumbnail }}"/>
-                  <div class="project-title">
-                    {{ project.title }}
+            {% for project in projects %}
+              <a href="{{ project.href }}">
+                <div class="project">
+                  <div class="project-thumbnail">
+                    <div style='background-image: url("{{project.thumbnail}}");'></div>
                   </div>
-                </a>
+                  <div class="project-text">
+                    <div class="project-title">
+                      <span>{{ project.title }}</span>
+                      <span>
+                        {% if project.is_winner %}
+                        <img src="/static/images/winner_projects.svg" class="project-winner-badge" /> 
+                        {% endif %}
+                      </span>
+                    </div>
+                    <div class="project-description">
+                      {{ project.description }}
+                    </div>
+                  </div>
+                </div>
+              </a>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="secondary-container">
+          <div class="projects-title secondary-title">
+            Skills:
+          </div>
+          <div class="skills">
+            {% for skill in skills %}
+              <div class="skill">
+                <a href="{{ skill.href }}">{{ skill.title }}</a>
               </div>
             {% endfor %}
           </div>
         </div>
-        <div class="skills">
-          {% for skill in skills %}
-            <div class="skill">
-              <a href="{{ skill.href }}">{{ skill.title }}</a>
-            </div>
-          {% endfor %}
-        </div>
         <a href="https://devpost.com/"> 
           <div class="devpost-wrap">
             <span class="devpost-text">Powered By Devpost</span>
-            <img src="https://seeklogo.com/images/D/devpost-logo-95FF685C5D-seeklogo.com.png" height="21" width="26"/>
+            <img src="/static/images/devpost.svg" height="21" width="26"/>
           </div>
         </a>
       </div>
