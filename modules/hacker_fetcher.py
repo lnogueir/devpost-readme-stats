@@ -37,7 +37,7 @@ class HackerFetcher:
     contributor_tags = lambda curr_tag: member_tags.find_all('span', class_='user-profile-link') if (member_tags := curr_tag.find(class_='members')) else []
     return [
       {
-          'thumbnail': (img := tag.find('img', class_='software_thumbnail_image')) and get_base64_img_from(img['src']),
+        'thumbnail': (img := tag.find('img', class_='software_thumbnail_image')) and get_base64_img_from(img['src']),
         'href': (a := tag.find('a', class_='link-to-software')) and a['href'],
         'title': (title_div := tag.find('div', class_='software-entry-name')) and title_div.find('h5').text.strip(),
         'description': (description_div := tag.find('div', class_='software-entry-name')) and description_div.find('p').text.strip(),
