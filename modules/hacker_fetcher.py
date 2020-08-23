@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 import urllib.request
-import random
 import ssl
 
 class HackerFetcher:
@@ -50,24 +49,3 @@ class HackerFetcher:
       }
       for tag in project_tags
     ]
-
-def fetch_hacker_stats(hacker_request): 
-  if 'id' in hacker_request:
-    hacker_id = hacker_request.get('id')
-    # TODO: raise ValueError in case hacker_id is not found on devpost
-    fetcher = HackerFetcher(hacker_id)
-    projects = fetcher.get_projects()
-    skills = fetcher.get_skills()
-    random.shuffle(projects)
-    projects.sort(reverse=True, key=lambda p: p['is_winner'])
-    random.shuffle(skills)
-    return {
-      'hacker_name': fetcher.get_hacker_name(),
-      'hacker_id': hacker_id,
-      'hacker_url': fetcher.url,
-      'hackathon_count': fetcher.get_hackathon_count(),
-      'projects': projects,
-      'win_count': len(list(filter(lambda project: project['is_winner'], projects))),
-      'skills': skills
-    }
-  raise KeyError('id must be present in request')

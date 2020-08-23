@@ -1,6 +1,6 @@
+from modules.hacker_request_handler import HackerRequestHandler
 from flask import Flask, Response, request
-from modules.svgreader import get_raw_svg, render_svg
-from modules.hackerfetcher import fetch_hacker_stats
+from modules.svg_reader import get_raw_svg, render_svg
 import os
 
 app = Flask(__name__)
@@ -11,8 +11,9 @@ themes = {os.path.splitext(theme)[0]: get_raw_svg(f'{themes_path}/{theme}') for 
 
 @app.route('/api')
 def api():
+    hacker_request_handler = HackerRequestHandler()
     try:
-        results_to_render = fetch_hacker_stats(request.args)
+        results_to_render = hacker_request_handler.process(request.args)
     except:
         results_to_render = {}
     return Response(

@@ -20,6 +20,10 @@
           padding: 7.5px;
         }
 
+        .main-wrapper{
+          margin-bottom:25px;
+        }
+
         .main-title{
           text-align: center;
           text-shadow: #AE8EFF 1px 0 10px;
@@ -152,7 +156,6 @@
         }
 
         .skills{
-          margin-bottom:25px;
           display: flex; 
           justify-content: space-around;
           flex-wrap: wrap;
@@ -199,86 +202,92 @@
         }
       </style>
       <div xmlns="http://www.w3.org/1999/xhtml" class="main-container">
-        <h1 class="main-title">
-          Hacker Profile <br/>
-          <span>{{hacker_id}} - {{hacker_name}} </span>
-        </h1>
-        <div class="hacker-intro">
-          <div class="hacker-intro-rows">
-            <div>
-              <div>
-                <img class="hacker-intro-icon" src="/static/images/hackathons_attended.svg" height="22.5" width="25" /> 
-                <span>Hackathons Attended:</span>
-              </div>
-              <span class="hacker-intro-count">{{hackathon_count}}</span>
-            </div>
-            <div>
-              <div>
-                <img class="hacker-intro-icon" style="top: 2px;" src="/static/images/projects_submitted.svg" height="22.5" width="25" />               
-                <span>Projects Submitted:</span>
-              </div>
-              <span class="hacker-intro-count">{{hackathon_count}}</span>
-            </div>
-            <div>
-              <div>
-                <img class="hacker-intro-icon" style="top: 4px;" src="/static/images/winner_projects.svg" height="22.5" width="25" /> 
-                <span>Winner Projects:</span>
-              </div>
-              <span class="hacker-intro-count">{{win_count}}</span>
-            </div>
-          </div>
-          <div class="code-image">
-            <img src="/static/images/code_icon.svg"/>
-          </div>
-        </div>
-        <div class="projects-container secondary-container">
-          <div class="projects-title secondary-title">
-            Project Highlights:
-          </div>
-          <div class="projects">
-            {% for project in projects %}
-              <a href="{{ project.href }}">
-                <div class="project">
-                  <div class="project-thumbnail">
-                    <div style='background-image: url("{{project.thumbnail}}");'></div>
+        <div class="main-wrapper">
+            <h1 class="main-title">
+              Hacker Profile <br/>
+              <span>{{hacker_id}} - {{hacker_name}} </span>
+            </h1>
+            <div class="hacker-intro">
+              <div class="hacker-intro-rows">
+                <div>
+                  <div>
+                    <img class="hacker-intro-icon" src="/static/images/hackathons_attended.svg" height="22.5" width="25" /> 
+                    <span>Hackathons Attended:</span>
                   </div>
-                  <div class="project-text">
-                    <div class="project-title">
-                      <span>{{ project.title }}</span>
-                      <span>
-                        {% if project.is_winner %}
-                        <img src="/static/images/winner_projects.svg" class="project-winner-badge" /> 
-                        {% endif %}
-                      </span>
-                    </div>
-                    <div class="project-description">
-                      {{ project.description }}
-                    </div>
-                  </div>
+                  <span class="hacker-intro-count">{{hackathon_count}}</span>
                 </div>
-              </a>
-            {% endfor %}
-          </div>
-        </div>
-        <div class="secondary-container">
-          <div class="projects-title secondary-title">
-            Skills:
-          </div>
-          <div class="skills">
-            {% for skill in skills %}
-              <div class="skill">
-                <a href="{{ skill.href }}">{{ skill.title }}</a>
+                <div>
+                  <div>
+                    <img class="hacker-intro-icon" style="top: 2px;" src="/static/images/projects_submitted.svg" height="22.5" width="25" />               
+                    <span>Projects Submitted:</span>
+                  </div>
+                  <span class="hacker-intro-count">{{hackathon_count}}</span>
+                </div>
+                <div>
+                  <div>
+                    <img class="hacker-intro-icon" style="top: 4px;" src="/static/images/winner_projects.svg" height="22.5" width="25" /> 
+                    <span>Winner Projects:</span>
+                  </div>
+                  <span class="hacker-intro-count">{{win_count}}</span>
+                </div>
               </div>
-            {% endfor %}
+              <div class="code-image">
+                <img src="/static/images/code_icon.svg"/>
+              </div>
+            </div>
+            {% if projects|length > 0 %}
+              <div class="projects-container secondary-container">
+                <div class="projects-title secondary-title">
+                  Project Highlights:
+                </div>
+                <div class="projects">
+                  {% for project in projects %}
+                    <a href="{{ project.href }}">
+                      <div class="project">
+                        <div class="project-thumbnail">
+                          <div style='background-image: url("{{project.thumbnail}}");'></div>
+                        </div>
+                        <div class="project-text">
+                          <div class="project-title">
+                            <span>{{ project.title }}</span>
+                            <span>
+                              {% if project.is_winner %}
+                              <img src="/static/images/winner_projects.svg" class="project-winner-badge" /> 
+                              {% endif %}
+                            </span>
+                          </div>
+                          <div class="project-description">
+                            {{ project.description }}
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  {% endfor %}
+                </div>
+              </div>
+            {% endif %}
+            {% if skills|length > 0 %}
+            <div class="secondary-container">
+              <div class="projects-title secondary-title">
+                Skills:
+              </div>
+              <div class="skills">
+                {% for skill in skills %}
+                  <div class="skill">
+                    <a href="{{ skill.href }}">{{ skill.title }}</a>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+            {% endif %}
           </div>
+          <a href="https://devpost.com/"> 
+            <div class="devpost-wrap">
+              <span class="devpost-text">Powered By Devpost</span>
+              <img src="/static/images/devpost.svg" height="21" width="26"/>
+            </div>
+          </a>
         </div>
-        <a href="https://devpost.com/"> 
-          <div class="devpost-wrap">
-            <span class="devpost-text">Powered By Devpost</span>
-            <img src="/static/images/devpost.svg" height="21" width="26"/>
-          </div>
-        </a>
-      </div>
     </foreignObject>
   </a>
 </svg>
